@@ -7,7 +7,7 @@ to invoke.
 ## Useful commands
 
 * `npx cdk deploy RestApiExpressStepFunctionStack` Deploy the REST API
-* `npx cdk deploy HttpApiExpressStepFunctionStack` Deploy the HTTP API
+* `npx cdk deploy HttpApiExpressStepFunctionStack` Deploy the HTTP API (Currently requires manual switch in console of integration types to the step function one)
 
 * `npm run build`   compile typescript to js
 * `npm run watch`   watch for changes and compile
@@ -19,6 +19,6 @@ to invoke.
 ### REST API Todo
 
 ### HTTP API Todo
-* Add step function as HTTP authoriser
-* Allow for nested json to parsed in request mapping
-*Allow for output to be change to lambda output.
+* Need to work out how to use the @aws-cdk/aws-apigatewayv2-integrations-alpha library to add a step function integration. Currently, I am swapping this over manually in the console.
+* Allow for nested json to parsed in request mapping. It fails when adding the whole request body. I assume this is due to nested JSON.
+* Allow for output to be altered to lambda output. Currently, the whole step function output is returned in the API. Would need to filter this out and just return the desired response.
