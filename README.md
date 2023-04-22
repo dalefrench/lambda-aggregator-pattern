@@ -12,3 +12,16 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * `cdk deploy`      deploy this stack to your default AWS account/region
 * `cdk diff`        compare deployed stack with current state
 * `cdk synth`       emits the synthesized CloudFormation template
+
+
+
+`npx cdk deploy RestApiExpressStepFunctionStack`
+
+`npx cdk deploy HttpApiExpressStepFunctionStack`
+
+REST API Todo
+
+HTTP API Todo
+- Add step function as HTTP authoriser
+- Allow for nested json to parsed in request mapping
+- Allow for output to be change to lambda output.

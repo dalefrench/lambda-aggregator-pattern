@@ -3,11 +3,11 @@
 // import * as LambdaAggregatorPattern from '../lib/lambda-aggregator-pattern-stack';
 
 // example test. To run these tests, uncomment this file along with the
-// example resource in lib/lambda-aggregator-pattern-stack.ts
+// example resource in lib/http-api-express-step-function.ts
 test('SQS Queue Created', () => {
 //   const app = new cdk.App();
 //     // WHEN
-//   const stack = new LambdaAggregatorPattern.LambdaAggregatorPatternStack(app, 'MyTestStack');
+//   const stack = new LambdaAggregatorPattern.HttpApiExpressStepFunction(app, 'MyTestStack');
 //     // THEN
 //   const template = Template.fromStack(stack);
 
