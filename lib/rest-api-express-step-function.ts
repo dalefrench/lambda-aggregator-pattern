@@ -6,12 +6,12 @@ import {
     aws_lambda_nodejs,
     aws_stepfunctions,
     Duration,
-    RemovalPolicy,
     Stack,
     StackProps
 } from 'aws-cdk-lib';
 import {Construct} from 'constructs';
-import {StateMachine} from "./resources/StateMachine";
+import {ProviderExpressWorkflow} from "./resources/ProviderExpressWorkflow";
+import {SettingsTable} from "./resources/SettingsTable";
 
 export class RestApiExpressStepFunction extends Stack {
 
@@ -113,18 +113,11 @@ export class RestApiExpressStepFunction extends Stack {
     }
 
     private createDynamoDbTable() {
-        this.settingsTable = new aws_dynamodb.Table(this, 'Table', {
-            partitionKey: {
-                name: 'id',
-                type: aws_dynamodb.AttributeType.STRING
-            },
-            billingMode: aws_dynamodb.BillingMode.PAY_PER_REQUEST,
-            removalPolicy: RemovalPolicy.DESTROY
-        });
+        this.settingsTable = new SettingsTable(this, 'Table');
     };
 
     private createStateMachine() {
-        const sm = new StateMachine(this, 'StateMachine');
-        this.stateMachine = sm.stateMachine;
+        const workflow = new ProviderExpressWorkflow(this, 'StateMachine');
+        this.stateMachine = workflow.stateMachine;
     }
 }

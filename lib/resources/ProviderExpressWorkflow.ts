@@ -3,10 +3,10 @@ import {aws_lambda_nodejs, aws_logs, aws_stepfunctions, aws_stepfunctions_tasks,
 import {LogLevel, StateMachineType} from "aws-cdk-lib/aws-stepfunctions";
 import {RetentionDays} from "aws-cdk-lib/aws-logs";
 
-export class StateMachine extends Construct {
+export class ProviderExpressWorkflow extends Construct {
     public stateMachine: aws_stepfunctions.StateMachine;
 
-    public logGroup: aws_logs.LogGroup;
+    private logGroup: aws_logs.LogGroup;
     constructor(scope: Construct, id: string) {
         super(scope, id);
         this.createLogGroup();
@@ -39,7 +39,7 @@ export class StateMachine extends Construct {
             .when(aws_stepfunctions.Condition.stringEquals('$.financeProvider', 'provider_two'), providerTwoJob)
             .otherwise(jobFailed);
 
-        this.stateMachine = new aws_stepfunctions.StateMachine(this, 'StateMachine', {
+        this.stateMachine = new aws_stepfunctions.StateMachine(this, 'ProviderExpressWorkflow', {
             definition: providerChoice,
             stateMachineType: StateMachineType.EXPRESS,
             timeout: Duration.minutes(5),
